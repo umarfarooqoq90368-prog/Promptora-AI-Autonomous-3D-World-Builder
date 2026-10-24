@@ -1,0 +1,1 @@
+{"prompt":"A simple futuristic city with 10 buildings and roads.","plan":{"scene_type":"city","style":"futuristic","seed":1001,"ground":{"size":50},"roads":{"enabled":true,"spacing":14},"buildings":{"count":10,"height_min":3,"height_max":9},"ai_tower":{"enabled":false},"robots":{"count":0},"vehicles":{"count":0}}}

@@ -1,0 +1,1 @@
+{"prompt":"A small modern city with no robots.","plan":{"scene_type":"city","style":"modern","seed":77,"ground":{"size":40},"roads":{"enabled":true,"spacing":12},"buildings":{"count":8,"height_min":3,"height_max":8},"ai_tower":{"enabled":false},"robots":{"count":0},"vehicles":{"count":0}}}
