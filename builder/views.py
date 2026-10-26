@@ -15,10 +15,25 @@ MAX_PROMPT_LENGTH = 2000
 
 def home(request):
     blender_exe, blender_error = find_blender()
+    recent_jobs = list(GenerationJob.objects.order_by('-id')[:8])
+    initial_job = None
+    for candidate in recent_jobs:
+        if candidate.status == GenerationJob.STATUS_SUCCESS and candidate.plan_json:
+            initial_job = candidate
+            break
+    if initial_job is None and recent_jobs:
+        initial_job = recent_jobs[0]
+
+    initial_payload = pipeline.job_status_payload(initial_job) if initial_job else None
+    if initial_payload and initial_job and initial_job.plan_json:
+        initial_payload['plan'] = initial_job.plan_json
+
     return render(request, 'builder/index.html', {
-        'app_version': 'Milestone 3: cube pipeline',
+        'app_version': 'Milestone 4: Procedural 3D City Engine',
         'blender_found': bool(blender_exe),
         'blender_note': (blender_exe or blender_error).splitlines()[0],
+        'recent_jobs': recent_jobs,
+        'initial_job_json': json.dumps(initial_payload) if initial_payload else 'null',
     })
 
 
